@@ -4,6 +4,8 @@ import java.awt.*;
 
 public class GamePanel extends JPanel {
 
+    private final int SCREEN_WIDTH = 800, SCREEN_HEIGHT = 800;
+
     private JLabel
             fourLabel = new JLabel("Probability of 4-sided die:"),
             sixLabel = new JLabel("Probability of 6-sided die:"),
@@ -32,21 +34,21 @@ public class GamePanel extends JPanel {
 
     public GamePanel() {
         super(null);
-        this.setPreferredSize(new Dimension(500,500));
+        this.setPreferredSize(new Dimension(SCREEN_WIDTH,SCREEN_HEIGHT));
         this.setBackground(new Color(10, 220, 150));
         this.loadLabelsAndBars();
         this.loadOtherComponents();
     }
 
     private void loadLabelsAndBars() {
-        int labelWidth = 150;
-        int barWidth = 200;
-        int height = 25;
-        int labelX = 50;
-        int labelY = 25;
-        int barX = 225;
-        int barY = 25;
-        int incrementY = 50;
+        int labelWidth = SCREEN_WIDTH * 2/5; // 40%
+        int barWidth = SCREEN_WIDTH * 2/5; // 40%
+        int height = SCREEN_HEIGHT / 20; // 5%
+        int labelX = SCREEN_WIDTH / 10; // 10%
+        int labelY = SCREEN_HEIGHT / 20; // 5%
+        int barX = labelWidth + labelX; // 50%
+        int barY = labelY; // 5%
+        int incrementY = SCREEN_HEIGHT / 10; // 10%
         for (JComponent component : components) {
             if (component instanceof JLabel label) {
                 label.setBounds(labelX, labelY, labelWidth, height);
@@ -65,19 +67,26 @@ public class GamePanel extends JPanel {
     }
 
     private void loadOtherComponents() {
-        button.setBounds(200, 375,100, 25);
+        int buttonX = SCREEN_WIDTH * 4/10; // 40%
+        int buttonY = SCREEN_HEIGHT * 3/4; // 75%
+        int buttonWidth = SCREEN_WIDTH / 5; // 20%
+        int height = SCREEN_HEIGHT / 20; // 5%
+        int validateY = SCREEN_HEIGHT * 33/40; // 82.5%
+        int predictY = SCREEN_WIDTH * 9/10; // 90%
+        int labelX = 0; // 0 %
+        button.setBounds(buttonX, buttonY,buttonWidth, height);
         button.setFocusable(false);
         //button.addActionListener(this);
         this.add(button);
 
         validate.setForeground(Color.RED);
-        validate.setBounds(0, 410, 500, 25);
+        validate.setBounds(labelX, validateY, SCREEN_WIDTH, height);
         validate.setHorizontalAlignment(SwingConstants.CENTER);
         this.add(validate);
         validate.setVisible(true);
 
         predict.setForeground(Color.BLACK);
-        predict.setBounds(0, 445, 500, 25);
+        predict.setBounds(labelX, predictY, SCREEN_WIDTH, height);
         predict.setHorizontalAlignment(SwingConstants.CENTER);
         this.add(predict);
         predict.setVisible(true);
