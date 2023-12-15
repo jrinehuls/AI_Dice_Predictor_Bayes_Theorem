@@ -121,7 +121,7 @@ public class DiceGUI extends JFrame implements ActionListener {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.pack();
 		this.setLocationRelativeTo(null);
-		this.setLayout(null); // Doesn't seem to do anything.
+		this.setLayout(null);
 		this.setVisible(true);
 	}
 	
