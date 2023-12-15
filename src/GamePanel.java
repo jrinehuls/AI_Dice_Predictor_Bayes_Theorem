@@ -51,6 +51,7 @@ public class GamePanel extends JPanel {
         for (JComponent component : components) {
             if (component instanceof JLabel label) {
                 label.setBounds(labelX, labelY, labelWidth, height);
+                label.setFont(new Font(label.getFont().getFontName(), Font.BOLD, height * 2/5));
                 labelY += incrementY;
             } else if (component instanceof JProgressBar bar) {
                 bar.setBounds(barX, barY, barWidth, height);
