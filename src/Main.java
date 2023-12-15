@@ -1,3 +1,5 @@
+import view.DiceGUI;
+import view.GameFrame;
 
 public class Main {
 

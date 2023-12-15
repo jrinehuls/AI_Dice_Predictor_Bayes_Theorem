@@ -1,1 +1,1 @@
-# AI_Dice_Predictor_Bayes_Theorem
+# AI Dice Predictor Using Bayes Theorem

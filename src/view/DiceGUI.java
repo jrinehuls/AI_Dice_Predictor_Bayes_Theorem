@@ -1,3 +1,7 @@
+package view;
+
+import util.Calculations;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -41,11 +45,10 @@ public class DiceGUI extends JFrame implements ActionListener {
 	
 	JButton button;
 	
-	DiceGUI(){
+	public DiceGUI(){
 		
 		panel = new JPanel();
 		panel.setPreferredSize(new Dimension(500,500));
-		//this.add(panel);
 		
 		label_four = new JLabel("Probability of 4-sided die:");
 		label_four.setBounds(50, 50, 150, 25);

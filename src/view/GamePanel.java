@@ -1,11 +1,15 @@
+package view;
+
+import controller.SubmitController;
+
 import javax.swing.*;
 import java.awt.*;
 
 public class GamePanel extends JPanel {
 
-    private final int SCREEN_WIDTH = 800, SCREEN_HEIGHT = 800;
+    private final int SCREEN_WIDTH = 500, SCREEN_HEIGHT = 500;
 
-    private JLabel
+    private final JLabel
             fourLabel = new JLabel("Probability of 4-sided die:"),
             sixLabel = new JLabel("Probability of 6-sided die:"),
             eightLabel = new JLabel("Probability of 8-sided die:"),
@@ -14,29 +18,33 @@ public class GamePanel extends JPanel {
             twentyLabel = new JLabel("Probability of 20-sided die:"),
             rollLabel = new JLabel("Enter the roll result here:");
 
-    private JProgressBar
-            fourProb = new JProgressBar(),
-            sixProb = new JProgressBar(),
-            eightProb = new JProgressBar(),
-            tenProb = new JProgressBar(),
-            twelveProb = new JProgressBar(),
-            twentyProb = new JProgressBar();
+    private final JProgressBar
+            fourBar = new JProgressBar(),
+            sixBar = new JProgressBar(),
+            eightBar = new JProgressBar(),
+            tenBar = new JProgressBar(),
+            twelveBar = new JProgressBar(),
+            twentyBar = new JProgressBar();
 
-    private JTextField textField = new JTextField();
+    private final JTextField textField = new JTextField();
 
-    private final JComponent[] components = {fourLabel, fourProb, sixLabel, sixProb,
-            eightLabel, eightProb, tenLabel, tenProb, twelveLabel, twelveProb, twentyLabel, twentyProb, rollLabel, textField};
+    private final JComponent[] components = {fourLabel, fourBar, sixLabel, sixBar,
+            eightLabel, eightBar, tenLabel, tenBar, twelveLabel, twelveBar, twentyLabel, twentyBar, rollLabel, textField};
 
-    private JButton button = new JButton("Submit");
-    private JLabel validate = new JLabel("ERROR: Enter a number between 1 and 20");
-    private JLabel predict = new JLabel("You won");
+    private final JButton button = new JButton("Submit");
+    private final JLabel textLabel = new JLabel();
+    private final JLabel predictLabel = new JLabel();
+
+    private final SubmitController sc;
 
     public GamePanel() {
         super(null);
+        sc = new SubmitController(this);
         this.setPreferredSize(new Dimension(SCREEN_WIDTH,SCREEN_HEIGHT));
         this.setBackground(new Color(10, 220, 150));
         this.loadLabelsAndBars();
         this.loadOtherComponents();
+
     }
 
     private void loadLabelsAndBars() {
@@ -76,19 +84,56 @@ public class GamePanel extends JPanel {
         int labelX = 0; // 0 %
         button.setBounds(buttonX, buttonY,buttonWidth, height);
         button.setFocusable(false);
-        //button.addActionListener(this);
+        button.addActionListener(sc);
         this.add(button);
 
-        validate.setForeground(Color.RED);
-        validate.setBounds(labelX, validateY, SCREEN_WIDTH, height);
-        validate.setHorizontalAlignment(SwingConstants.CENTER);
-        this.add(validate);
-        validate.setVisible(true);
+        textLabel.setForeground(Color.RED);
+        textLabel.setBounds(labelX, validateY, SCREEN_WIDTH, height);
+        textLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        this.add(textLabel);
+        textLabel.setVisible(true);
 
-        predict.setForeground(Color.BLACK);
-        predict.setBounds(labelX, predictY, SCREEN_WIDTH, height);
-        predict.setHorizontalAlignment(SwingConstants.CENTER);
-        this.add(predict);
-        predict.setVisible(true);
+        predictLabel.setForeground(Color.BLACK);
+        predictLabel.setBounds(labelX, predictY, SCREEN_WIDTH, height);
+        predictLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        this.add(predictLabel);
+        predictLabel.setVisible(true);
     }
+
+    public JTextField getTextField() {
+        return this.textField;
+    }
+
+    public JLabel getTextLabel() {
+        return this.textLabel;
+    }
+
+    public JLabel getPredictLabel() {
+        return this.predictLabel;
+    }
+
+    public JProgressBar getFourBar() {
+        return this.fourBar;
+    }
+
+    public JProgressBar getSixBar() {
+        return this.sixBar;
+    }
+
+    public JProgressBar getEightBar() {
+        return this.eightBar;
+    }
+
+    public JProgressBar getTenBar() {
+        return this.tenBar;
+    }
+
+    public JProgressBar getTwelveBar() {
+        return this.twelveBar;
+    }
+
+    public JProgressBar getTwentyBar() {
+        return this.twentyBar;
+    }
+
 }
