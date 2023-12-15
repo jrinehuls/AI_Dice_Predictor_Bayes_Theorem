@@ -16,12 +16,7 @@ public class SubmitController implements ActionListener {
     JLabel predictlabel;
     JButton submitButton;
     Calculations calc;
-    int four;
-    int six;
-    int eight;
-    int ten;
-    int twelve;
-    int twenty;
+    int four, six, eight, ten, twelve, twenty;
 
     public SubmitController(GamePanel gp) {
         this.calc = new Calculations();
@@ -34,38 +29,41 @@ public class SubmitController implements ActionListener {
         this.textField = this.gp.getTextField();
         this.predictlabel = this.gp.getPredictLabel();
         this.submitButton = (JButton) e.getSource();
-        int roll;
-        try {
-            roll = Integer.parseInt(textField.getText());
-            if(roll >= 1 && roll <= 20) {
-                calc.calculateProbability(roll);
-                redo();
-                finish();
-                this.textLabel.setForeground(Color.BLACK);
-                this.textLabel.setText("You entered: " + roll);
+        if (!submitButton.getText().equals("Try Again")) {
+            int roll;
+            try {
+                roll = Integer.parseInt(textField.getText());
+                if (roll >= 1 && roll <= 20) {
+                    calc.calculateProbability(roll);
+                    repaint();
+                    finish();
+                    this.textLabel.setForeground(Color.BLACK);
+                    this.textLabel.setText("You entered: " + roll);
+                } else {
+                    throw new NumberFormatException();
+                }
+            } catch (NumberFormatException ex) {
+                this.textLabel.setText("ERROR: Enter a number between 1 and 20");
+                this.textLabel.setForeground(Color.RED);
             }
-            else {
-                throw new NumberFormatException();
-            }
-        } catch (NumberFormatException ex) {
-            this.textLabel.setText("ERROR: Enter a number between 1 and 20");
-            this.textLabel.setForeground(Color.RED);
+            this.textField.setText(null);
+        } else {
+            this.resetGame();
         }
-        this.textField.setText(null);
     }
 
-    public void redo() {
-        four = (int) (100*calc.getFourSided().getProbability());
+    public void repaint() {
+        four = (int) (100 * calc.getFourSided().getProbability());
         this.gp.getFourBar().setValue(four);
-        six = (int) (100*calc.getSixSided().getProbability());
+        six = (int) (100 * calc.getSixSided().getProbability());
         this.gp.getSixBar().setValue(six);
-        eight = (int) (100*calc.getEightSided().getProbability());
+        eight = (int) (100 * calc.getEightSided().getProbability());
         this.gp.getEightBar().setValue(eight);
-        ten = 0; // (int) (100*calc.prob_twelve);
+        ten = (int) (100 * calc.getTenSided().getProbability());
         this.gp.getTenBar().setValue(ten);
-        twelve = (int) (100*calc.getTwelveSided().getProbability());
+        twelve = (int) (100 * calc.getTwelveSided().getProbability());
         this.gp.getTwelveBar().setValue(twelve);
-        twenty = (int) (100*calc.getTwentySided().getProbability());
+        twenty = (int) (100 * calc.getTwentySided().getProbability());
         this.gp.getTwentyBar().setValue(twenty);
     }
 
@@ -89,7 +87,16 @@ public class SubmitController implements ActionListener {
             }
             this.predictlabel.setVisible(true);
             this.textField.setEnabled(false);
-            this.submitButton.setEnabled(false);
+            this.submitButton.setText("Try Again");
         }
+    }
+
+    public void resetGame() {
+        this.calc = new Calculations();
+        this.gp.loadLabelsAndBars();
+        this.predictlabel.setVisible(false);
+        this.textLabel.setVisible(false);
+        this.textField.setEnabled(true);
+        this.submitButton.setText("Submit");
     }
 }

@@ -1,6 +1,7 @@
 package view;
 
 import controller.SubmitController;
+import util.Calculations;
 
 import javax.swing.*;
 import java.awt.*;
@@ -47,7 +48,7 @@ public class GamePanel extends JPanel {
 
     }
 
-    private void loadLabelsAndBars() {
+    public void loadLabelsAndBars() {
         int labelWidth = SCREEN_WIDTH * 2/5; // 40%
         int barWidth = SCREEN_WIDTH * 2/5; // 40%
         int height = SCREEN_HEIGHT / 20; // 5%
@@ -63,7 +64,7 @@ public class GamePanel extends JPanel {
                 labelY += incrementY;
             } else if (component instanceof JProgressBar bar) {
                 bar.setBounds(barX, barY, barWidth, height);
-                bar.setValue((int) 100.0/6);
+                bar.setValue((int) 100.0/ Calculations.NUM_DICE);
                 // bar.setStringPainted(true);
                 barY += incrementY;
             } else if (component instanceof JTextField field) {

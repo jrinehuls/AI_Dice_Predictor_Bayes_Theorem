@@ -21,9 +21,14 @@ public class Die {
         this.probability = probability;
     }
 
-    public double probDieCanRollNumber(int roll) {
+    public double getJointProbability(int roll) {
+        return this.probDieCanRollNumber(roll) * this.getProbability();
+    }
+
+    private double probDieCanRollNumber(int roll) {
         if (roll <= this.getNumSides()) {
             return 1.0 / this.getNumSides();
         } else return 0.0;
     }
+
 }
