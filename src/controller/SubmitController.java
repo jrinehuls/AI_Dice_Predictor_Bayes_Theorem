@@ -34,7 +34,6 @@ public class SubmitController implements ActionListener {
         this.textField = this.gp.getTextField();
         this.predictlabel = this.gp.getPredictLabel();
         this.submitButton = (JButton) e.getSource();
-        four = (int)(100*calc.prob_four);
         int roll;
         try {
             roll = Integer.parseInt(textField.getText());
@@ -56,17 +55,17 @@ public class SubmitController implements ActionListener {
     }
 
     public void redo() {
-        four = (int) (100*calc.prob_four);
+        four = (int) (100*calc.getFourSided().getProbability());
         this.gp.getFourBar().setValue(four);
-        six = (int) (100*calc.prob_six);
+        six = (int) (100*calc.getSixSided().getProbability());
         this.gp.getSixBar().setValue(six);
-        eight = (int) (100*calc.prob_eight);
+        eight = (int) (100*calc.getEightSided().getProbability());
         this.gp.getEightBar().setValue(eight);
         ten = 0; // (int) (100*calc.prob_twelve);
         this.gp.getTenBar().setValue(ten);
-        twelve = (int) (100*calc.prob_twelve);
+        twelve = (int) (100*calc.getTwelveSided().getProbability());
         this.gp.getTwelveBar().setValue(twelve);
-        twenty = (int) (100*calc.prob_twenty);
+        twenty = (int) (100*calc.getTwentySided().getProbability());
         this.gp.getTwentyBar().setValue(twenty);
     }
 
