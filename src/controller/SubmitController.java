@@ -13,7 +13,7 @@ public class SubmitController implements ActionListener {
     GamePanel gp;
     JTextField textField;
     JLabel textLabel;
-    JLabel predictlabel;
+    JLabel predictLabel;
     JButton submitButton;
     Calculations calc;
     int four, six, eight, ten, twelve, twenty;
@@ -27,7 +27,7 @@ public class SubmitController implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         this.textLabel = this.gp.getTextLabel();
         this.textField = this.gp.getTextField();
-        this.predictlabel = this.gp.getPredictLabel();
+        this.predictLabel = this.gp.getPredictLabel();
         this.submitButton = (JButton) e.getSource();
         if (!submitButton.getText().equals("Try Again")) {
             int roll;
@@ -69,23 +69,26 @@ public class SubmitController implements ActionListener {
 
     public void finish() {
         int certainty = 75;
-        if(four >= certainty || six >= certainty || eight >= certainty || twelve >= certainty || twenty >= certainty) {
+        if(four >= certainty || six >= certainty || eight >= certainty || ten >= certainty || twelve >= certainty || twenty >= certainty) {
             if(four >= certainty) {
-                this.predictlabel.setText("You're using a four sided die");
+                this.predictLabel.setText("You're using a four sided die");
             }
             if(six >= certainty) {
-                this.predictlabel.setText("You're using a six sided die");
+                this.predictLabel.setText("You're using a six sided die");
             }
             if(eight >= certainty) {
-                this.predictlabel.setText("You're using a eight sided die");
+                this.predictLabel.setText("You're using a eight sided die");
+            }
+            if(ten >= certainty) {
+                this.predictLabel.setText("You're using a ten sided die");
             }
             if(twelve >= certainty) {
-                this.predictlabel.setText("You're using a twelve sided die");
+                this.predictLabel.setText("You're using a twelve sided die");
             }
             if(twenty >= certainty) {
-                this.predictlabel.setText("You're using a twenty sided die");
+                this.predictLabel.setText("You're using a twenty sided die");
             }
-            this.predictlabel.setVisible(true);
+            this.predictLabel.setVisible(true);
             this.textField.setEnabled(false);
             this.submitButton.setText("Try Again");
         }
@@ -94,7 +97,7 @@ public class SubmitController implements ActionListener {
     public void resetGame() {
         this.calc = new Calculations();
         this.gp.loadLabelsAndBars();
-        this.predictlabel.setVisible(false);
+        this.predictLabel.setVisible(false);
         this.textLabel.setText("");
         this.textField.setEnabled(true);
         this.submitButton.setText("Submit");
