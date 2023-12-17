@@ -95,7 +95,7 @@ public class SubmitController implements ActionListener {
         this.calc = new Calculations();
         this.gp.loadLabelsAndBars();
         this.predictlabel.setVisible(false);
-        this.textLabel.setVisible(false);
+        this.textLabel.setText("");
         this.textField.setEnabled(true);
         this.submitButton.setText("Submit");
     }
