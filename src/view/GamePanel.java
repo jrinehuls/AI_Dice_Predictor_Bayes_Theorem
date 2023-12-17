@@ -8,7 +8,7 @@ import java.awt.*;
 
 public class GamePanel extends JPanel {
 
-    private final int SCREEN_WIDTH = 500, SCREEN_HEIGHT = 500;
+    private final int SCREEN_WIDTH = 750, SCREEN_HEIGHT = 750;
 
     private final JLabel
             fourLabel = new JLabel("Probability of 4-sided die:"),
@@ -65,6 +65,7 @@ public class GamePanel extends JPanel {
             } else if (component instanceof JProgressBar bar) {
                 bar.setBounds(barX, barY, barWidth, height);
                 bar.setValue((int) 100.0/ Calculations.NUM_DICE);
+                bar.setForeground(new Color(20, 100, 200));
                 // bar.setStringPainted(true);
                 barY += incrementY;
             } else if (component instanceof JTextField field) {
